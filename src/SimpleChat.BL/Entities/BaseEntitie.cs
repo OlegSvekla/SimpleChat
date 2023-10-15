@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SimpleChat.BL.Entities
 {
-    internal class BaseEntitie
+    public class BaseEntitie
     {
+        public int Id { get; set; }
     }
 }

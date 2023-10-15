@@ -14,18 +14,17 @@ namespace SimpleChat.Infrastructure.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<ChatUser> builder)
         {
-            builder
-                .HasKey(cu => new { cu.UserId, cu.ChatId });
+            builder.HasKey(cu => new { cu.UserId, cu.ChatId });
 
-            builder
-                .HasOne(cu => cu.User)
-                .WithMany(u => u.ChatUsers)
-                .HasForeignKey(cu => cu.UserId);
+            builder.HasOne(cu => cu.User)
+                   .WithMany(u => u.ChatUsers)
+                   .HasForeignKey(cu => cu.UserId)
+                   .OnDelete(DeleteBehavior.Cascade); // Каскадное удаление
 
-            builder
-                .HasOne(cu => cu.Chat)
-                .WithMany(c => c.ChatUsers)
-                .HasForeignKey(cu => cu.ChatId);
+            builder.HasOne(cu => cu.Chat)
+                   .WithMany(c => c.ChatUsers)
+                   .HasForeignKey(cu => cu.ChatId)
+                   .OnDelete(DeleteBehavior.Cascade); // Каскадное удаление
         }
     }
 }

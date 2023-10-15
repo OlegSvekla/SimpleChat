@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace SimpleChat.BL.Entities
 {
-    public class Chat
+    public class Chat : BaseEntitie
     {
-        public int Id { get; set; }
         public string ChatName { get; set; }
 
-        public ICollection<ChatUser> ChatUsers { get; set; } // Связь с участниками чата
-        public ICollection<Message> Messages { get; set; } // Сообщения в чате
+        public List<ChatUser> ChatUsers { get; set; } // Связь с участниками чата
+        public List<Message> Messages { get; set; } // Сообщения в чате
+
+        public int CreatorUserId { get; set; } // Id пользователя, создавшего чат
+        public User Creator { get; set; }
     }
 }
