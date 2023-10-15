@@ -19,16 +19,17 @@ namespace SimpleChat.Infrastructure.EntitiesConfiguration
             builder.HasMany(c => c.ChatUsers)
                    .WithOne(cu => cu.Chat)
                    .HasForeignKey(cu => cu.ChatId)
-                   .OnDelete(DeleteBehavior.Cascade); // Каскадное удаление для связи с ChatUser
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(c => c.Messages)
                    .WithOne(m => m.Chat)
                    .HasForeignKey(m => m.ChatId)
-                   .OnDelete(DeleteBehavior.Cascade); // Каскадное удаление для связи с Message
+                   .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(c => c.Creator)
+            builder.HasOne(c => c.UserCreator)
                    .WithMany(u => u.CreatedChats)
-                   .HasForeignKey(c => c.CreatorUserId);
+                   .HasForeignKey(c => c.UserCreatorId)
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

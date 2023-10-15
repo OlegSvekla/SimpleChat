@@ -33,12 +33,12 @@ namespace SimpleChat.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CreatorUserId")
+                    b.Property<int>("UserCreatorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorUserId");
+                    b.HasIndex("UserCreatorId");
 
                     b.ToTable("Chats");
                 });
@@ -104,13 +104,13 @@ namespace SimpleChat.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("SimpleChat.BL.Entities.Chat", b =>
                 {
-                    b.HasOne("SimpleChat.BL.Entities.User", "Creator")
+                    b.HasOne("SimpleChat.BL.Entities.User", "UserCreator")
                         .WithMany("CreatedChats")
-                        .HasForeignKey("CreatorUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("UserCreatorId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Creator");
+                    b.Navigation("UserCreator");
                 });
 
             modelBuilder.Entity("SimpleChat.BL.Entities.ChatUser", b =>

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SimpleChat.BL.Entities
 {
-    public class Message : BaseEntitie
+    public class Message 
     {
+        public int Id { get; set; }
+
         public string Content { get; set; }
 
         public int UserId { get; set; } // Пользователь, отправивший сообщение
