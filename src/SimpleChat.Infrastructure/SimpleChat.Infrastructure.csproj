@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimpleChat.BL\SimpleChat.BL.csproj" />
+    <ProjectReference Include="..\SimpleChat.Core\SimpleChat.Core.csproj" />
   </ItemGroup>
 
 </Project>
