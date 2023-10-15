@@ -1,4 +1,5 @@
 using SimpleChat.Api.Extensions;
+using SimpleChat.Api.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,6 @@ var app = builder.Build();
 
 await app.RunDbContextMigrations();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -22,5 +22,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

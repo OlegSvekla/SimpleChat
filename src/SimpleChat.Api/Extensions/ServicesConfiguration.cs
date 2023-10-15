@@ -1,4 +1,7 @@
-﻿namespace SimpleChat.Api.Extensions
+﻿using SimpleChat.Api.Interfaces.Implementation.Repositories;
+using SimpleChat.Core.Interfaces.IRepositories;
+
+namespace SimpleChat.Api.Extensions
 {
     public static class ServicesConfiguration
     {
@@ -8,7 +11,13 @@
             services.AddControllers();
             services.AddEndpointsApiExplorer();
 
-            //services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IChatRepository, ChatRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
+
+            services.AddSignalR();
+
 
             //services.AddScoped<IFilterService<PagedUserAndRoleResult>, UserService>();
             //services.AddScoped<IUserService<User>, UserService>();

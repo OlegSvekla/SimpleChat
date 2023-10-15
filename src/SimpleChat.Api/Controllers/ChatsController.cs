@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SimpleChat.Api.Controllers
 {
-    public class ChstsController : Controller
+    public class ChatsController : Controller
     {
         // GET: UsersController
         public ActionResult Index()
