@@ -11,7 +11,7 @@ using SimpleChat.Infrastructure.Data;
 namespace SimpleChat.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(SimpleChatDbContext))]
-    [Migration("20231015162726_InitialSchema")]
+    [Migration("20231015184301_InitialSchema")]
     partial class InitialSchema
     {
         /// <inheritdoc />
