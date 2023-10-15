@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChat.Api", "src\Simpl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28FDA8F0-9788-4E56-8AD7-0D42C570F43A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat.Infrastructure", "src\SimpleChat.Infrastructure\SimpleChat.Infrastructure.csproj", "{1F96766A-ED26-4C08-AE3E-514816773869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChat.Infrastructure", "src\SimpleChat.Infrastructure\SimpleChat.Infrastructure.csproj", "{1F96766A-ED26-4C08-AE3E-514816773869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat.BL", "src\SimpleChat.BL\SimpleChat.BL.csproj", "{289BC43F-198B-4253-858D-41856C09EB35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChat.Core", "src\SimpleChat.Core\SimpleChat.Core.csproj", "{289BC43F-198B-4253-858D-41856C09EB35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
