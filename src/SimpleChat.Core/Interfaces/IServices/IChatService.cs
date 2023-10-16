@@ -8,8 +8,8 @@ namespace SimpleChat.Core.Interfaces.IServices
 {
     public interface IChatService<T> where T : class
     {
-        Task<T> GetChatById(int id);
-        Task<T> GetChatByChatName(string name);
+        Task<T> GetById(int id);
+        Task<T> GetByChatName(string name);
 
         Task<bool> AddChat(T book);
         Task<T> DeleteChat(int id, int idd);

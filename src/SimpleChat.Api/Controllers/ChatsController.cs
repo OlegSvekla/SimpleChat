@@ -12,50 +12,45 @@ namespace SimpleChat.Api.Controllers
         private readonly IChatService<ChatDto> _chatService;
         private readonly IValidator<ChatDto> _validator;
 
-        public ChatsController(IChatService<ChatDto> chatService, IValidator<ChatDto> validator)
+        public ChatsController(
+            IChatService<ChatDto> chatService,
+            IValidator<ChatDto> validator)
         {
             _chatService = chatService;
             _validator = validator;
         }
 
-        /// <summary>
-        /// Gets the book by its own Id
-        /// </summary>   
-        /// <param name="id">ID of the Book to get.</param>
-        /// <returns>Ok response containing a single book.</returns>
-        /// <remarks>
-        /// We have five books and five Id identification key. Enter any number from 1 to 5 inclusive.
-        /// </remarks>
-        /// <response code="200">Returns one book.</response>
-        /// <response code="404">The book with this Id was not found.</response>
+        /// <param name="id">ID of the Chat to get.</param>
+        /// <returns>Ok response containing a single chat.</returns>
+        /// <response code="200">Returns one chat.</response>
+        /// <response code="404">The chat with this Id was not found.</response>
         [ProducesResponseType(200, Type = typeof(ChatDto))]
         [ProducesResponseType(404)]
         [HttpGet("{id}")]
-        public async Task<ActionResult<ChatDto>> GetChatById(int id)
+        public async Task<ActionResult<ChatDto>> GetChatById([FromRoute] int id)
         {
-            var chat = await _chatService.GetChatById(id);
+            var chat = await _chatService.GetById(id);
 
             return chat == null ? NotFound("User not found woth this Id") : Ok(chat);
         }
 
-
+        /// <param name="chatName">Name of the Chat to get.</param>
+        /// <returns>Ok response containing a single chat.</returns>
+        /// <response code="200">Returns one chat.</response>
+        /// <response code="404">The chat with this ChatName was not found.</response>
         [ProducesResponseType(200, Type = typeof(ChatDto))]
         [ProducesResponseType(404)]
-        [HttpGet("chatName/{chatName}")]
+        [HttpGet("name/{chatName}")]
         public async Task<ActionResult<ChatDto>> GetChatByChatName(string chatName)
         {
-            var chat = await _chatService.GetChatByChatName(chatName);
+            var chat = await _chatService.GetByChatName(chatName);
 
-            return chat == null ? NotFound("User not found woth this Id") : Ok(chat);
+            return chat == null ? NotFound("User not found woth this Name") : Ok(chat);
         }
-
-
-        /// <summary>
-        /// Add book
-        /// </summary>   
-        /// <param name="bookDto">The Book to be created.</param>
-        /// <returns>Ok response succesefully created book in DATA.</returns>
-        /// <response code="201">Book is created.</response>
+ 
+        /// <param name="chatDto">The Chat to be created.</param>
+        /// <returns>Ok response succesefully created chat in DATA.</returns>
+        /// <response code="201">Chat is created.</response>
         [ProducesResponseType(201, Type = typeof(ChatDto))]
         [HttpPost]
         public async Task<IActionResult> AddChat([FromBody] ChatDto chatDto)
@@ -68,21 +63,21 @@ namespace SimpleChat.Api.Controllers
             }
             var success = await _chatService.AddChat(chatDto);
 
-            return success == false ? BadRequest("Your Email is not unique") : Ok();
+            return success == false ? BadRequest("This chat is already existing") : Ok();
         }
 
-        /// <summary>
-        /// Removes book with the specified ID.
-        /// </summary>        
-        /// <param name="id">The ID of the Book to be removed.</param>
-        /// <response code="204">The book was successfully removed.</response>
-        /// <response code="404">The book with this Id was not found.</response>
-        [HttpDelete("{chatId:int}")]
+        /// <param name="chatId">The ID of the chat to be removed.</param>
+        /// <param name="creatorId">The ID of the chat creator to be removed.</param> 
+        /// <response code="204">The chat was successfully removed.</response>
+        /// <response code="404">The chat with this Id was not found.</response>
+        [HttpDelete("{chatId:int}/{creatorId:int}")]
         [ProducesResponseType(204, Type = typeof(ChatDto))]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> DeleteBook(int chatId, int currentUserId)
+        public async Task<IActionResult> DeleteChat(
+            [FromRoute] int chatId,
+            [FromRoute] int creatorId)
         {
-            var success = await _chatService.DeleteChat( chatId,  currentUserId);
+            var success = await _chatService.DeleteChat(chatId, creatorId);
 
             return success == null ? NotFound() : NoContent();
         }

@@ -23,13 +23,11 @@ namespace SimpleChat.Api.Interfaces.Implementation.Services
             _logger = logger;
         }
 
-        public async Task<ChatDto> GetChatById(int id)
+        public async Task<ChatDto> GetById(int chatId)
         {
             var chat = await _chatRepository
-                      .GetOneByAsync(expression: _ => _.Id.Equals(id), include: query => query
-                          .Include(chat => chat.UserCreator)
-                      );
-
+                .GetOneByAsync(expression: _ => _.Id.Equals(chatId),include: query => query
+                .Include(chat => chat.UserCreator));
             if (chat is null)
             {
                 return null;
@@ -38,12 +36,11 @@ namespace SimpleChat.Api.Interfaces.Implementation.Services
             return _mapper.Map<ChatDto>(chat);
         }
 
-        public async Task<ChatDto> GetChatByChatName(string name)
+        public async Task<ChatDto> GetByChatName(string chatName)
         {
-            var chat = await _chatRepository.GetOneByAsync(expression: _ => _.ChatName.Equals(name), include: query => query
-              .Include(chat => chat.UserCreator)
-          );
-
+            var chat = await _chatRepository
+                .GetOneByAsync(expression: _ => _.ChatName.Equals(chatName),include: query => query
+                .Include(chat => chat.UserCreator));
             if (chat is null)
             {
                 return null;
@@ -51,20 +48,17 @@ namespace SimpleChat.Api.Interfaces.Implementation.Services
 
             return _mapper.Map<ChatDto>(chat);
         }
-
-
 
         public async Task<bool> AddChat(ChatDto chatDto)
         {
-
-            var existingChat = await _chatRepository.GetOneByAsync(expression: u => u.ChatName == chatDto.ChatName);
+            var existingChat = await _chatRepository
+                 .GetOneByAsync(expression: u => u.ChatName == chatDto.ChatName);
             if (existingChat is not null)
             {
                 return false;
             }
 
             var chat = _mapper.Map<Chat>(chatDto);
-
 
             var result = await _chatRepository.CreateAsync(chat);
             if (result is null)

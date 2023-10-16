@@ -10,7 +10,7 @@ namespace SimpleChat.Api.Extensions
             IServiceCollection services)
         {
             services.AddDbContext<SimpleChatDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("CrudDbConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("SimpleChatDbConnection")));
         }
     }
 }

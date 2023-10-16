@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChat.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChat.Core", "src\SimpleChat.Core\SimpleChat.Core.csproj", "{289BC43F-198B-4253-858D-41856C09EB35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat.Tests", "SimpleChat.Tests\SimpleChat.Tests.csproj", "{C2A3216F-FCE1-4A27-8EA8-0712C80EEE69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat.Tests", "src\SimpleChat.Tests\SimpleChat.Tests.csproj", "{C2A3216F-FCE1-4A27-8EA8-0712C80EEE69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
