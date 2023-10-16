@@ -9,6 +9,9 @@ namespace SimpleChat.Infrastructure.Mapper
         public MapperEntityToDto()
         {
             CreateMap<Chat, ChatDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<ChatUser, ChatUserDto>().ReverseMap();
+            CreateMap<Message, MessageDto>().ReverseMap();
         }
     }
 }

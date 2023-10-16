@@ -11,8 +11,8 @@ namespace SimpleChat.BL.Entities
     {
         public string Name { get; set; }
 
-        public List<ChatUser> ChatUsers { get; set; } // Связь с чатами, в которых участвует пользователь
+        public List<ChatUser> ChatUsers { get; set; }
         public List<Message> Messages { get; set; }
-        public List<Chat> CreatedChats { get; set; } // Связь с чатами, созданными пользователем
+        public List<Chat> CreatedChats { get; set; }
     }
 }

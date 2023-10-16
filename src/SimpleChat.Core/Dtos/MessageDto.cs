@@ -1,20 +1,22 @@
-﻿using SimpleChat.Core.Entities;
+﻿using SimpleChat.BL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace SimpleChat.BL.Entities
+namespace SimpleChat.Core.Dtos
 {
-    public class Message : BaseEntity
+    public class MessageDto : BaseEntityDto
     {
         public string Content { get; set; }
 
         public int UserId { get; set; }
-        public User User { get; set; }
+        public UserDto User { get; set; }
 
+        [JsonIgnore]
         public int ChatId { get; set; }
-        public Chat Chat { get; set; }
+        public ChatDto Chat { get; set; }
     }
 }

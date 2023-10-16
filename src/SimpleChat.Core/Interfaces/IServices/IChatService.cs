@@ -10,7 +10,6 @@ namespace SimpleChat.Core.Interfaces.IServices
     {
         Task<T> GetChatById(int id);
         Task<T> GetChatByChatName(string name);
-        Task<T> GetChatByUserCreatorId(int userCreatorId);
 
         Task<bool> AddChat(T book);
         Task<T> DeleteBook(int id);
