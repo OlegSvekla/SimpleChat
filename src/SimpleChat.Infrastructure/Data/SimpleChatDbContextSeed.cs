@@ -14,8 +14,6 @@ namespace SimpleChat.Infrastructure.Data
             {
                 logger.LogInformation("Data seeding started.");
 
-                // Заполнение начальных данных для моделей Chat, User, ChatUser и Message
-
                 if (!await dbContext.Users.AnyAsync())
                 {
                     await dbContext.Users.AddRangeAsync(GetPreConfiguredUsers());
@@ -79,10 +77,6 @@ namespace SimpleChat.Infrastructure.Data
 
         private static IEnumerable<ChatUser> GetPreConfiguredChatUsers()
         {
-            //var users = GetPreConfiguredUsers().ToList();
-            //var chats = GetPreConfiguredChats().ToList(); // Получаем список созданных чатов
-
-            // Здесь создаем связи между пользователями и чатами
             var chatUsers = new List<ChatUser>
             {
                 new ChatUser { UserId = 1, ChatId = 1 },
@@ -109,10 +103,6 @@ namespace SimpleChat.Infrastructure.Data
 
         private static IEnumerable<Message> GetPreConfiguredMessages()
         {
-            //var users = GetPreConfiguredUsers().ToList();
-            //var chats = GetPreConfiguredChats().ToList(); // Получаем список созданных чатов
-
-            // Здесь создаем сообщения для чатов
             var messages = new List<Message>
             {       
                 new Message { Content = "User 1 to Chat 1", UserId = 1, ChatId = 1 },
