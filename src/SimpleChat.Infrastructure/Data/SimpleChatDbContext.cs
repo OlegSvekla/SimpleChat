@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleChat.BL.Entities;
+using SimpleChat.Core.Entities;
 using SimpleChat.Infrastructure.EntitiesConfiguration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleChat.Infrastructure.Data
 {

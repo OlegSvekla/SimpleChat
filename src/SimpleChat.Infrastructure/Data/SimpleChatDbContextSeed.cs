@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SimpleChat.BL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SimpleChat.Core.Entities;
 
 namespace SimpleChat.Infrastructure.Data
 {
@@ -19,18 +14,19 @@ namespace SimpleChat.Infrastructure.Data
             {
                 logger.LogInformation("Data seeding started.");
 
-                //// Заполнение начальных данных для моделей Chat, User, ChatUser и Message
-                //if (!await dbContext.Chats.AnyAsync())
-                //{
-                //    await dbContext.Chats.AddRangeAsync(GetPreConfiguredChats());
-                //    await dbContext.SaveChangesAsync();
-                //}
+                // Заполнение начальных данных для моделей Chat, User, ChatUser и Message
 
-                //if (!await dbContext.Users.AnyAsync())
-                //{
-                //    await dbContext.Users.AddRangeAsync(GetPreConfiguredUsers());
-                //    await dbContext.SaveChangesAsync();
-                //}
+                if (!await dbContext.Users.AnyAsync())
+                {
+                    await dbContext.Users.AddRangeAsync(GetPreConfiguredUsers());
+                    await dbContext.SaveChangesAsync();
+                }
+
+                if (!await dbContext.Chats.AnyAsync())
+                {
+                    await dbContext.Chats.AddRangeAsync(GetPreConfiguredChats());
+                    await dbContext.SaveChangesAsync();
+                }
 
                 if (!await dbContext.ChatUsers.AnyAsync())
                 {
@@ -73,39 +69,39 @@ namespace SimpleChat.Infrastructure.Data
         {
             return new List<Chat>
             {
-                new Chat { ChatName = "Chat 1", CreatorUserId = 1 },
-                new Chat { ChatName = "Chat 2", CreatorUserId = 2 },
-                new Chat { ChatName = "Chat 3", CreatorUserId = 3 },
-                new Chat { ChatName = "Chat 4", CreatorUserId = 4 },
-                new Chat { ChatName = "Chat 5", CreatorUserId = 5 },
+                new Chat { ChatName = "Chat 1", UserCreatorId = 1 },
+                new Chat { ChatName = "Chat 2", UserCreatorId = 2 },
+                new Chat { ChatName = "Chat 3", UserCreatorId = 3 },
+                new Chat { ChatName = "Chat 4", UserCreatorId = 4 },
+                new Chat { ChatName = "Chat 5", UserCreatorId = 5 }
             };
         }
 
         private static IEnumerable<ChatUser> GetPreConfiguredChatUsers()
         {
-            var users = GetPreConfiguredUsers().ToList();
-            var chats = GetPreConfiguredChats().ToList(); // Получаем список созданных чатов
+            //var users = GetPreConfiguredUsers().ToList();
+            //var chats = GetPreConfiguredChats().ToList(); // Получаем список созданных чатов
 
             // Здесь создаем связи между пользователями и чатами
             var chatUsers = new List<ChatUser>
             {
-                new ChatUser { UserId = users[0].Id, ChatId = chats[0].Id },
-                new ChatUser { UserId = users[1].Id, ChatId = chats[0].Id },
-                new ChatUser { UserId = users[2].Id, ChatId = chats[0].Id },
+                new ChatUser { UserId = 1, ChatId = 1 },
+                new ChatUser { UserId = 2, ChatId = 1 },
+                new ChatUser { UserId = 3, ChatId = 1 },
 
-                new ChatUser { UserId = users[0].Id, ChatId = chats[1].Id },
-                new ChatUser { UserId = users[1].Id, ChatId = chats[1].Id },
-                new ChatUser { UserId = users[4].Id, ChatId = chats[1].Id },
+                new ChatUser { UserId = 1, ChatId = 2 },
+                new ChatUser { UserId = 2, ChatId = 2 },
+                new ChatUser { UserId = 5, ChatId = 2 },
 
-                new ChatUser { UserId = users[2].Id, ChatId = chats[2].Id },
-                new ChatUser { UserId = users[3].Id, ChatId = chats[2].Id },
-                new ChatUser { UserId = users[4].Id, ChatId = chats[2].Id },
+                new ChatUser { UserId = 3, ChatId = 3 },
+                new ChatUser { UserId = 4, ChatId = 3 },
+                new ChatUser { UserId = 5, ChatId = 3 },
 
-                new ChatUser { UserId = users[0].Id, ChatId = chats[3].Id },
-                new ChatUser { UserId = users[4].Id, ChatId = chats[3].Id },
+                new ChatUser { UserId = 1, ChatId = 4 },
+                new ChatUser { UserId = 5, ChatId = 4 },
 
-                new ChatUser { UserId = users[1].Id, ChatId = chats[4].Id },
-                new ChatUser { UserId = users[3].Id, ChatId = chats[4].Id },
+                new ChatUser { UserId = 2, ChatId = 5 },
+                new ChatUser { UserId = 4, ChatId = 5 }
             };
 
             return chatUsers;
@@ -113,29 +109,29 @@ namespace SimpleChat.Infrastructure.Data
 
         private static IEnumerable<Message> GetPreConfiguredMessages()
         {
-            var users = GetPreConfiguredUsers().ToList();
-            var chats = GetPreConfiguredChats().ToList(); // Получаем список созданных чатов
+            //var users = GetPreConfiguredUsers().ToList();
+            //var chats = GetPreConfiguredChats().ToList(); // Получаем список созданных чатов
 
             // Здесь создаем сообщения для чатов
             var messages = new List<Message>
             {       
-                new Message { Content = "User 1 to Chat 1", UserId = users[0].Id, ChatId = chats[0].Id },
-                new Message { Content = "User 2 to Chat 1", UserId = users[1].Id, ChatId = chats[0].Id },
-                new Message { Content = "User 3 to Chat 1", UserId = users[2].Id, ChatId = chats[0].Id },
+                new Message { Content = "User 1 to Chat 1", UserId = 1, ChatId = 1 },
+                new Message { Content = "User 2 to Chat 1", UserId = 2, ChatId = 1 },
+                new Message { Content = "User 3 to Chat 1", UserId = 3, ChatId = 1 },
 
-                new Message { Content = "User 1 to Chat 2", UserId = users[0].Id, ChatId = chats[1].Id },
-                new Message { Content = "User 2 to Chat 2", UserId = users[1].Id, ChatId = chats[1].Id },
-                new Message { Content = "User 5 to Chat 2", UserId = users[4].Id, ChatId = chats[1].Id },
+                new Message { Content = "User 1 to Chat 2", UserId = 1, ChatId = 2 },
+                new Message { Content = "User 2 to Chat 2", UserId = 2, ChatId = 2 },
+                new Message { Content = "User 5 to Chat 2", UserId = 5, ChatId = 2 },
 
-                new Message { Content = "User 3 to Chat 3", UserId = users[2].Id, ChatId = chats[2].Id },
-                new Message { Content = "User 4 to Chat 3", UserId = users[3].Id, ChatId = chats[2].Id },
-                new Message { Content = "User 5 to Chat 3", UserId = users[4].Id, ChatId = chats[2].Id },
+                new Message { Content = "User 3 to Chat 3", UserId = 3, ChatId = 3 },
+                new Message { Content = "User 4 to Chat 3", UserId = 4, ChatId = 3 },
+                new Message { Content = "User 5 to Chat 3", UserId = 5, ChatId = 3 },
 
-                new Message { Content = "User 1 to Chat 4", UserId = users[0].Id, ChatId = chats[3].Id },
-                new Message { Content = "User 5 to Chat 4", UserId = users[4].Id, ChatId = chats[3].Id },
+                new Message { Content = "User 1 to Chat 4", UserId = 1, ChatId = 4 },
+                new Message { Content = "User 5 to Chat 4", UserId = 5, ChatId = 4 },
 
-                new Message { Content = "User 2 to Chat 5", UserId = users[1].Id, ChatId = chats[4].Id },
-                new Message { Content = "User 4 to Chat 5", UserId = users[3].Id, ChatId = chats[4].Id },
+                new Message { Content = "User 2 to Chat 5", UserId = 2, ChatId = 5 },
+                new Message { Content = "User 4 to Chat 5", UserId = 4, ChatId = 5 }
             };
 
             return messages;

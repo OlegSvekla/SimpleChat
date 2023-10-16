@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SimpleChat.Core.Entities;
 
-namespace SimpleChat.BL.Entities
+namespace SimpleChat.Core.Entities
 {
-    public class Chat : BaseEntitie
+    public class Chat : BaseEntity
     {
         public string ChatName { get; set; }
 
-        public List<ChatUser> ChatUsers { get; set; } // Связь с участниками чата
-        public List<Message> Messages { get; set; } // Сообщения в чате
+        public List<ChatUser> ChatUsers { get; set; }
+        public List<Message> Messages { get; set; }
 
-        public int CreatorUserId { get; set; } // Id пользователя, создавшего чат
-        public User Creator { get; set; }
+        public int UserCreatorId { get; set; }
+        public User UserCreator { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace SimpleChat.Api.Extensions
                 });
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 _.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+                _.EnableAnnotations();
             });
         }
     }

@@ -1,6 +1,6 @@
-﻿#nullable disable
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-using Microsoft.EntityFrameworkCore.Migrations;
+#nullable disable
 
 namespace SimpleChat.Infrastructure.Data.Migrations
 {
@@ -30,17 +30,16 @@ namespace SimpleChat.Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ChatName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatorUserId = table.Column<int>(type: "int", nullable: false)
+                    UserCreatorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Chats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Chats_Users_CreatorUserId",
-                        column: x => x.CreatorUserId,
+                        name: "FK_Chats_Users_UserCreatorId",
+                        column: x => x.UserCreatorId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -95,9 +94,9 @@ namespace SimpleChat.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Chats_CreatorUserId",
+                name: "IX_Chats_UserCreatorId",
                 table: "Chats",
-                column: "CreatorUserId");
+                column: "UserCreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ChatUsers_ChatId",

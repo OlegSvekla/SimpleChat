@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection.Emit;
-using SimpleChat.BL.Entities;
+using SimpleChat.Core.Entities;
 
 namespace SimpleChat.Infrastructure.EntitiesConfiguration
 {
@@ -19,12 +13,12 @@ namespace SimpleChat.Infrastructure.EntitiesConfiguration
             builder.HasOne(cu => cu.User)
                    .WithMany(u => u.ChatUsers)
                    .HasForeignKey(cu => cu.UserId)
-                   .OnDelete(DeleteBehavior.Cascade); // Каскадное удаление
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(cu => cu.Chat)
                    .WithMany(c => c.ChatUsers)
                    .HasForeignKey(cu => cu.ChatId)
-                   .OnDelete(DeleteBehavior.Cascade); // Каскадное удаление
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
