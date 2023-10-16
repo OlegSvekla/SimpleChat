@@ -1,6 +1,5 @@
-﻿using FluentNHibernate.Automapping;
-using SimpleChat.BL.Entities;
-using SimpleChat.Core.Dtos;
+﻿using SimpleChat.Core.Dtos;
+using SimpleChat.Core.Entities;
 
 namespace SimpleChat.Infrastructure.Mapper
 {

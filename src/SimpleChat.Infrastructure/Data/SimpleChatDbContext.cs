@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleChat.BL.Entities;
+using SimpleChat.Core.Entities;
 using SimpleChat.Infrastructure.EntitiesConfiguration;
 
 namespace SimpleChat.Infrastructure.Data

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using SimpleChat.Api.Interfaces;
-using SimpleChat.BL.Entities;
+using SimpleChat.Core.Entities;
 using SimpleChat.Core.Interfaces.IRepositories;
 
 namespace SimpleChat.Api.Hubs

@@ -1,6 +1,6 @@
 ﻿using SimpleChat.Core.Entities;
 
-namespace SimpleChat.BL.Entities
+namespace SimpleChat.Core.Entities
 {
     public class Chat : BaseEntity
     {

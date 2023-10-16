@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SimpleChat.BL.Entities;
 using SimpleChat.Core.Dtos;
 using SimpleChat.Core.Interfaces.IServices;
 

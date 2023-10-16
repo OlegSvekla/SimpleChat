@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using SimpleChat.Core.Dtos;
 using SimpleChat.Core.Interfaces.IRepositories;
 using SimpleChat.Core.Interfaces.IServices;
-using SimpleChat.BL.Entities;
+using SimpleChat.Core.Entities;
 
 namespace SimpleChat.Api.Interfaces.Implementation.Services
 {

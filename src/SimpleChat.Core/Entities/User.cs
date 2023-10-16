@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleChat.BL.Entities
+namespace SimpleChat.Core.Entities
 {
     public class User : BaseEntity
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using SimpleChat.BL.Entities;
+using SimpleChat.Core.Entities;
 
 namespace SimpleChat.Infrastructure.EntitiesConfiguration
 {

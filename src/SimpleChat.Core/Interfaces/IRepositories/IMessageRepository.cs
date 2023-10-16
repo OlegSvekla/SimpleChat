@@ -1,9 +1,4 @@
-﻿using SimpleChat.BL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SimpleChat.Core.Entities;
 
 namespace SimpleChat.Core.Interfaces.IRepositories
 {

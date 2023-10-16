@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SimpleChat.BL.Entities;
+using SimpleChat.Core.Entities;
 
 namespace SimpleChat.Infrastructure.Data
 {

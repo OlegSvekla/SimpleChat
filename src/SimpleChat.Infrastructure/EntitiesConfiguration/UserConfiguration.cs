@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using SimpleChat.BL.Entities;
+using SimpleChat.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
