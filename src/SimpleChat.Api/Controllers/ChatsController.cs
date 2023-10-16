@@ -49,15 +49,7 @@ namespace SimpleChat.Api.Controllers
         }
 
 
-        [ProducesResponseType(200, Type = typeof(ChatDto))]
-        [ProducesResponseType(404)]
-        [HttpGet("{userCreatorId}")]
-        public async Task<ActionResult<ChatDto>> GetChatByUserCreatorId(int id)
-        {
-            var chat = await _chatService.GetChatByUserCreatorId(id);
 
-            return chat == null ? NotFound("User not found woth this Id") : Ok(chat);
-        }
     }
 }
 

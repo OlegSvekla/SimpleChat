@@ -56,19 +56,7 @@ namespace SimpleChat.Api.Interfaces.Implementation.Services
             return _mapper.Map<ChatDto>(chat);
         }
 
-        public async Task<ChatDto> GetChatByUserCreatorId(int userCreatorId)
-        {
-            var chat = await _chatRepository
-          .GetOneByAsync(expression: _ => _.UserCreatorId.Equals(userCreatorId)
-          );
 
-            if (chat is null)
-            {
-                return null;
-            }
-
-            return _mapper.Map<ChatDto>(chat);
-        }
 
         public Task<bool> AddChat(ChatDto book)
         {
