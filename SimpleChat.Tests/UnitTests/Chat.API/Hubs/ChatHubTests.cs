@@ -9,7 +9,7 @@ using SimpleChat.Tests.UnitTests.Chat.API.BogusData;
 using SimpleChat.Tests.UnitTests.Chat.API.Helpers;
 using Xunit;
 
-namespace MentorPlatform.Tests.UnitTests.Chat.API.Hubs
+namespace SimpleChat.Tests.UnitTests.Chat.API.Hubs
 {
     public class ChatHubTests
     {
