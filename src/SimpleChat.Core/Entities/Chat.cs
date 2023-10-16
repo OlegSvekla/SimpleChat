@@ -6,9 +6,8 @@ namespace SimpleChat.BL.Entities
     {
         public string ChatName { get; set; }
 
-        public List<ChatUser> ChatUsers { get; set; } // Связь с участниками чата
-
-        public List<Message> Messages { get; set; } // Сообщения в чате
+        public List<ChatUser> ChatUsers { get; set; }
+        public List<Message> Messages { get; set; }
 
         public int UserCreatorId { get; set; }
         public User UserCreator { get; set; }

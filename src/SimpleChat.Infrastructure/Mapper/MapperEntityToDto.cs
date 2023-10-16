@@ -10,8 +10,6 @@ namespace SimpleChat.Infrastructure.Mapper
         {
             CreateMap<Chat, ChatDto>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
-            CreateMap<ChatUser, ChatUserDto>().ReverseMap();
-            CreateMap<Message, MessageDto>().ReverseMap();
         }
     }
 }

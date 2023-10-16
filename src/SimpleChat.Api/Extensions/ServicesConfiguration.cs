@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
-using SimpleChat.Api.Interfaces.Implementation.Repositories;
 using SimpleChat.Api.Interfaces.Implementation.Services;
 using SimpleChat.Core.Dtos;
 using SimpleChat.Core.Interfaces.IRepositories;
 using SimpleChat.Core.Interfaces.IServices;
 using SimpleChat.Core.Validation;
+using SimpleChat.Infrastructure.Data.Repositories;
 using SimpleChat.Infrastructure.Mapper;
 
 namespace SimpleChat.Api.Extensions
@@ -30,16 +30,6 @@ namespace SimpleChat.Api.Extensions
             services.AddAutoMapper(typeof(MapperEntityToDto));
 
             services.AddSignalR();
-
-
-            //services.AddScoped<IFilterService<PagedUserAndRoleResult>, UserService>();
-            //services.AddScoped<IUserService<User>, UserService>();
-
-            //services.AddScoped<IValidator<UserQueryParameters>, UserQueryParametersValidation>();
-            //services.AddScoped<IValidator<UserDto>, UserDtoValidation>();
-            //services.AddScoped<IValidator<RoleDto>, RoleDtoValidation>();
-
-            //services.AddAutoMapper(typeof(MapperEntityToDto));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimpleChat.BL.Entities;
 using SimpleChat.Core.Dtos;
@@ -11,10 +12,12 @@ namespace SimpleChat.Api.Controllers
     public class ChatsController : ControllerBase
     {
         private readonly IChatService<ChatDto> _chatService;
+        private readonly IValidator<ChatDto> _validator;
 
-        public ChatsController(IChatService<ChatDto> chatService)
+        public ChatsController(IChatService<ChatDto> chatService, IValidator<ChatDto> validator)
         {
             _chatService = chatService;
+            _validator = validator;
         }
 
         /// <summary>
@@ -49,7 +52,42 @@ namespace SimpleChat.Api.Controllers
         }
 
 
+        /// <summary>
+        /// Add book
+        /// </summary>   
+        /// <param name="bookDto">The Book to be created.</param>
+        /// <returns>Ok response succesefully created book in DATA.</returns>
+        /// <response code="201">Book is created.</response>
+        [ProducesResponseType(201, Type = typeof(ChatDto))]
+        [HttpPost]
+        public async Task<IActionResult> AddChat([FromBody] ChatDto chatDto)
+        {
+            var validationResult = await _validator.ValidateAsync(chatDto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.ToString());
 
+            }
+            var success = await _chatService.AddChat(chatDto);
+
+            return success == false ? BadRequest("Your Email is not unique") : Ok();
+        }
+
+        /// <summary>
+        /// Removes book with the specified ID.
+        /// </summary>        
+        /// <param name="id">The ID of the Book to be removed.</param>
+        /// <response code="204">The book was successfully removed.</response>
+        /// <response code="404">The book with this Id was not found.</response>
+        [HttpDelete("{chatId:int}")]
+        [ProducesResponseType(204, Type = typeof(ChatDto))]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> DeleteBook(int chatId, int currentUserId)
+        {
+            var success = await _chatService.DeleteChat( chatId,  currentUserId);
+
+            return success == null ? NotFound() : NoContent();
+        }
     }
 }
 

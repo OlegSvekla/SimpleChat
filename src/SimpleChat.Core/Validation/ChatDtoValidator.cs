@@ -7,12 +7,13 @@ namespace SimpleChat.Core.Validation
     {
         public ChatDtoValidator()
         {
-            RuleFor(dto => dto.ChatName).NotEmpty()
+            RuleFor(dto => dto.ChatName).NotNull()
+                                        .NotEmpty()
                                         .WithMessage("ChatName is required");
 
             RuleFor(dto => dto.UserCreator).NotNull()
-                                    .NotEmpty()
-                                    .WithMessage("User must be set");
+                                           .NotEmpty()
+                                           .WithMessage("User must be set");
         }
     }
 }

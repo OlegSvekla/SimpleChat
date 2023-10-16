@@ -4,8 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SimpleChat.Core.Dtos;
 using SimpleChat.Core.Interfaces.IRepositories;
 using SimpleChat.Core.Interfaces.IServices;
-using System.Text.Json.Serialization;
-using System.Text.Json;
+using SimpleChat.BL.Entities;
 
 namespace SimpleChat.Api.Interfaces.Implementation.Services
 {
@@ -14,17 +13,15 @@ namespace SimpleChat.Api.Interfaces.Implementation.Services
         private readonly IChatRepository _chatRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<ChatService> _logger;
-        private readonly IValidator<ChatDto> _validator;
+
 
         public ChatService(IChatRepository chatRepository,
             IMapper mapper,
-            ILogger<ChatService> logger,
-            IValidator<ChatDto> validator)
+            ILogger<ChatService> logger)
         {
             _chatRepository = chatRepository;
             _mapper = mapper;
             _logger = logger;
-            _validator = validator;
         }
 
         public async Task<ChatDto> GetChatById(int id)
@@ -58,21 +55,42 @@ namespace SimpleChat.Api.Interfaces.Implementation.Services
 
 
 
-        public Task<bool> AddChat(ChatDto book)
+        public async Task<bool> AddChat(ChatDto chatDto)
         {
-            throw new NotImplementedException();
+
+            var existingChat = await _chatRepository.GetOneByAsync(expression: u => u.ChatName == chatDto.ChatName);
+            if (existingChat is not null)
+            {
+                return false;
+            }
+
+            var chat = _mapper.Map<Chat>(chatDto);
+
+
+            var result = await _chatRepository.CreateAsync(chat);
+            if (result is null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        public Task<ChatDto> DeleteBook(int id)
+        public async Task<ChatDto> DeleteChat(int bookId, int currentUserId)
         {
-            throw new NotImplementedException();
+            var chatToDelete = await _chatRepository.GetOneByAsync(expression: _ => _.Id.Equals(bookId));
+            if (chatToDelete is null)
+            {
+                return null;
+            }
+            if (chatToDelete.UserCreatorId == currentUserId)
+            {
+                await _chatRepository.DeleteAsync(chatToDelete);
+                var chatDeleted = _mapper.Map<ChatDto>(chatToDelete);
+                return chatDeleted;
+            }
+
+            return null;
         }
-
-
-
-
-
-
-
     }
 }

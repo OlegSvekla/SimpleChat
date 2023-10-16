@@ -12,7 +12,8 @@ namespace SimpleChat.Core.Validation
     {
         public UserDtoValidator()
         {
-            RuleFor(dto => dto.Name).NotEmpty()
+            RuleFor(dto => dto.Name).NotNull()
+                                    .NotEmpty()
                                     .WithMessage("Name is required");
         }
     }

@@ -16,7 +16,7 @@ namespace SimpleChat.Core.Interfaces.IRepositories
             Expression<Func<T, bool>>? expression = null,
             CancellationToken cancellationToken = default);
 
-        Task CreateAsync(T entity, CancellationToken cancellationToken = default);
+        Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default);
 
         Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
 

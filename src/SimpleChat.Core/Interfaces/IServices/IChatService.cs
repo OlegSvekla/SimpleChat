@@ -12,6 +12,6 @@ namespace SimpleChat.Core.Interfaces.IServices
         Task<T> GetChatByChatName(string name);
 
         Task<bool> AddChat(T book);
-        Task<T> DeleteBook(int id);
+        Task<T> DeleteChat(int id, int idd);
     }
 }

@@ -4,8 +4,10 @@ using SimpleChat.Core.Entities;
 using SimpleChat.Core.Interfaces.IRepositories;
 using System.Linq.Expressions;
 using SimpleChat.Infrastructure.Data;
+using Antlr.Runtime;
+using System.Threading;
 
-namespace SimpleChat.Api.Interfaces.Implementation.Repositories
+namespace SimpleChat.Infrastructure.Data.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
@@ -63,10 +65,12 @@ namespace SimpleChat.Api.Interfaces.Implementation.Repositories
             return model;
         }
 
-        public async Task CreateAsync(T entity, CancellationToken cancellationToken = default)
+
+        public async Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _table.AddAsync(entity, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
+            return entity;
         }
 
         public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
